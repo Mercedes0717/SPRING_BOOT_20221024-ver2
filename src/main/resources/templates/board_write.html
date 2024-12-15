@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>글쓰기</title>
+</head>
+<body>
+<div>
+    <h1>게시글 추가</h1>
+    <form th:action="@{/api/boards}" method="post">
+        <div class="form-group">
+            <label for="title">제목:</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+        <div class="form-group">
+            <label for="content">내용:</label>
+            <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
+        </div>
+        <!-- Hidden default fields -->
+        <input type="hidden" id="user" name="user" value="GUEST">
+        <input type="hidden" id="newdate" name="newdate" th:value="${#dates.format(new java.util.Date(), 'yyyy-MM-dd')}">
+        <input type="hidden" id="count" name="count" value="0">
+        <input type="hidden" id="likec" name="likec" value="0">
+        <button type="submit" class="btn btn-primary">저장</button>
+    </form>
+</div>
+</body>
+</html>

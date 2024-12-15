@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello2 페이지</title>
+</head>
+<body>
+    <h1>안녕하세요!</h1>
+
+    <!-- 텍스트 출력 -->
+    <span th:text="${data1}">message</span>
+
+    <!-- Input/Select 태그의 값 지정 -->
+    <div>
+        <input type="text" th:value="${data2}">
+        <input type="checkbox" th:field="*{data2}" th:value="true"> 동의합니다.
+    </div>
+
+    <!-- 태그의 속성 값 설정 -->
+    <p>
+        <a th:href="@{/posts/{id}(id=${link})}">글 상세보기</a>
+    </p>
+
+    <!-- 지역 변수 사용 -->
+    <div th:with="first=${name}">
+        <p>리스트에서 처음 사람의 이름 = <span th:text="${first}"></span></p>
+    </div>
+
+    <!-- 링크에 파라미터 추가 -->
+    <p>
+        <a th:href="@{/products/detail/(productId=${para1}, productId=${para2})}">상품 상세보기</a>
+    </p>
+</body>
+</html>

@@ -1,0 +1,19 @@
+
+        <!DOCTYPE html>
+        <html xmlns:th="http://www.thymeleaf.org">
+        <head>
+            <title>게시글 보기</title>
+        </head>
+        <body>
+            <div>
+                <h1>게시글 상세 보기</h1>
+                <p>제목: <span th:text="${board.title}"></span></p>
+                <p>작성자: <span th:text="${board.user}"></span></p>
+                <p>작성일: <span th:text="${board.newdate}"></span></p>
+                <p>조회수: <span th:text="${board.count}"></span></p>
+                <p>좋아요: <span th:text="${board.likec}"></span></p>
+                <p>내용: <span th:text="${board.content}"></span></p>
+            </div>
+        </body>
+        </html>
+    

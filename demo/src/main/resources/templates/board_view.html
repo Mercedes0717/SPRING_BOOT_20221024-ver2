@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 상세 보기</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+        th { background-color: #f4f4f4; }
+        .btn { padding: 8px 12px; text-decoration: none; border-radius: 5px; color: white; }
+        .btn-warning { background-color: #ffc107; }
+        .btn-danger { background-color: #dc3545; }
+    </style>
+</head>
+<body>
+    <h1>블로그 게시판 (new)</h1>
+
+    <!-- 게시글 상세 정보 테이블 -->
+    <h2>현재 게시글 내용 보기</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+                <th>조회수</th>
+                <th>좋아요</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td th:text="${boards.id}"></td>
+                <td th:text="${boards.title}"></td>
+                <td th:text="${boards.user}"></td>
+                <td th:text="${boards.newdate}"></td>
+                <td th:text="${boards.count}"></td>
+                <td th:text="${boards.likec}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 게시글 내용 표시 -->
+    <h3>글내용</h3>
+    <p th:text="${boards.content}"></p>
+
+    <!-- 수정 및 삭제 버튼 -->
+    <div>
+        <a class="btn btn-warning" th:href="@{/board_edit/{id}(id=${boards.id})}">수정</a>
+        <form th:action="@{/api/board_delete/{id}(id=${boards.id})}" method="post" style="display:inline;">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit" class="btn btn-danger">삭제</button>
+        </form>
+    </div>
+</body>
+</html>

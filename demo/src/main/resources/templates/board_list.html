@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>게시판</title>
+</head>
+<body>
+<div class="container">
+    <h1>게시판 목록</h1>
+    <p th:text="'안녕하세요, ' + ${email} + '님!'"></p>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>관리</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="board : ${boards}">
+            <td th:text="${board.id}"></td>
+            <td th:text="${board.title}"></td>
+            <td th:text="${board.user}"></td>
+            <td>
+                <a th:if="${board.user == email}" th:href="@{/edit_board/{id}(id=${board.id})}">수정</a>
+                <form th:if="${board.user == email}" th:action="@{/delete_board/{id}(id=${board.id})}" method="post" style="display:inline;">
+                    <button type="submit">삭제</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+
+<script>
+    let timeoutWarning = 270000; // 4 minutes and 30 seconds (session timeout is 5 minutes)
+    let timeoutLogout = 300000; // 5 minutes
+
+    setTimeout(() => {
+        alert('세션이 곧 만료됩니다. 작업 중인 내용을 저장해주세요.');
+    }, timeoutWarning);
+
+    setTimeout(() => {
+        alert('세션이 만료되었습니다. 다시 로그인해주세요.');
+        window.location.href = '/member_login';
+    }, timeoutLogout);
+</script>
